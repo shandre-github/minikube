@@ -1,4 +1,4 @@
-from main import app
+from minikube.helloworld.main import app
 
 def test_helloworld():
     response = app.test_client().get('/')
