@@ -1,0 +1,39 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ${APP_NAME}
+  namespace: ${NAMESPACE}
+spec:
+  selector:
+    matchLabels:
+      app: ${APP_NAME}
+  replicas: ${REPLICAS}
+  template:
+    metadata:
+      labels:
+        app: ${APP_NAME}
+    spec:
+      containers:
+      - name: ${APP_NAME}
+        image: ${DOCKER_IMAGE}
+        imagePullPolicy: Never
+        resources:
+          limits:
+            memory: ${MEMORY_LIMIT}
+          requests:
+            memory: ${MEMORY_REQUEST}
+          limits:
+            cpu: ${CPU_LIMIT}
+          requests:
+            cpu: ${CPU_REQUEST}
+        ports:
+        - containerPort: ${DEPLOYMENT_CONTAINER_PORT}
+        env:
+          - name: MY_POD_NAME
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.name
+          - name: MY_POD_NAMESPACE
+            valueFrom:
+              fieldRef:
+                fieldPath: metadata.namespace
