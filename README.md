@@ -42,7 +42,7 @@ All manifest files must be of extension *.yaml.*tmpl*. Using templates to pass i
 5. Stop minikube by running **make minikube_stop**
 
 # To run pytest
-1. Run **make run**
+1. Run **make test**
 
 # To clean the project
 1. Run **make clean**
